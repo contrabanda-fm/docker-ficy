@@ -46,8 +46,9 @@ jobs:
       # https://github.com/actions/runner/issues/655#issuecomment-1015372602
       - uses: cardinalby/export-env-action@v1
         with:
-          #envFile: '.env.example'
-          envFile: '../../.env.example'
+          envFile: '.env.example'
+          # Error: Error: ENOENT: no such file or directory, open '../../.env.example'
+          #envFile: '../../.env.example'
           expand: 'true'
 
       - name: Build and push Docker image
