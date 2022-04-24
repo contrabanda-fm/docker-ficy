@@ -1,3 +1,11 @@
+<!-- START doctoc.sh generated TOC please keep comment here to allow auto update -->
+<!-- DO NOT EDIT THIS SECTION, INSTEAD RE-RUN doctoc.sh TO UPDATE -->
+**:book: Table of Contents**
+
+- [docker-ficy](#docker-ficy)
+- [Usage](#usage)
+
+<!-- END doctoc.sh generated TOC please keep comment here to allow auto update -->
 # docker-ficy
 
 Dockerized ficy, "An icecast/shoutcast stream grabber suite"
