@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       version:
+        default: "latest"
         description: 'Docker image version'
         required: false
-        default: "latest"
         type: string
 
 env:
