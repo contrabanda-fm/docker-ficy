@@ -1,0 +1,22 @@
+services:
+
+  ficy:
+    build:
+      args:
+        - IMAGE=${IMAGE:-DEBIAN}
+        - VERSION=${VERSION:-LATEST}
+      context: .
+    container_name: ficy
+    environment:
+      - BACKUP_FILE_DURATION=${BACKUP_FILE_DURATION:-3600}
+      - BACKUP_FILE_NAME=${BACKUP_FILE_NAME:-backup}
+      - STREAMING_URL=${STREAMING_URL:-http://contrabanda.org:8000/contrabanda}
+    image: localhost/ficy
+    volumes:
+      - volume-ficy:/opt/ficy
+
+version: "3.8"
+
+volumes:
+  volume-ficy:
+    name: volume-ficy
