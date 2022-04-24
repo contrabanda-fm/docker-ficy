@@ -58,8 +58,5 @@ jobs:
           context: .
           push: true
           #tags: ${{ steps.meta.outputs.tags }}
-          tags: "ghcr.io/contrabanda-fm/docker-ficy:main"
+          tags: "ghcr.io/contrabanda-fm/docker-ficy:latest"
           #labels: ${{ steps.meta.outputs.labels }}
-          labels: |
-            #maintainer=CrazyMax
-            org.opencontainers.image.version=latest
