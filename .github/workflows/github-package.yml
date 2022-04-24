@@ -43,6 +43,12 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+      # https://github.com/actions/runner/issues/655#issuecomment-1015372602
+      - uses: cardinalby/export-env-action@v1
+        with:
+          envFile: '.env.example'    
+          expand: 'true'
+
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
