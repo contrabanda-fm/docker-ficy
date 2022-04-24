@@ -2,18 +2,14 @@ name: Create and publish a Docker image
 
 on:
   push:
-    branches: ['main']
+    branches: ['**']
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: 'Log level'     
+      tags:
+        description: 'Tags'
         required: false
-        default: 'debug' 
-        type: choice
-        options:
-        - info
-        - warning
-        - debug 
+        default: 'latest' 
+        type: string
 
 env:
   REGISTRY: ghcr.io
@@ -55,6 +51,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
+          # https://stackoverflow.com/a/63927832
           build-args: |
             IMAGE=debian
             VERSION=latest
