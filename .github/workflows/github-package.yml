@@ -51,9 +51,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          args: |
-            DOCKER_META_IMAGES=ghcr.io/contrabanda-fm/docker-ficy
-            VERSION=latest
           # https://stackoverflow.com/a/63927832
           build-args: |
             IMAGE=debian
@@ -61,4 +58,5 @@ jobs:
           context: .
           push: true
           #tags: ${{ steps.meta.outputs.tags }}
+          tags: ['ghcr.io/contrabanda-fm/docker-ficy:main']
           #labels: ${{ steps.meta.outputs.labels }}
