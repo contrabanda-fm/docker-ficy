@@ -60,3 +60,6 @@ jobs:
           #tags: ${{ steps.meta.outputs.tags }}
           tags: "ghcr.io/contrabanda-fm/docker-ficy:main"
           #labels: ${{ steps.meta.outputs.labels }}
+          labels: |
+            #maintainer=CrazyMax
+            org.opencontainers.image.version=latest
