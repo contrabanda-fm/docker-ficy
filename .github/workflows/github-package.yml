@@ -5,8 +5,8 @@ on:
     branches: ['**']
   workflow_dispatch:
     inputs:
-      tags:
-        description: 'Tags'
+      version:
+        description: 'Docker image version'
         required: false
         default: 'latest' 
         type: string
@@ -58,5 +58,5 @@ jobs:
           context: .
           push: true
           #tags: ${{ steps.meta.outputs.tags }}
-          tags: "ghcr.io/contrabanda-fm/docker-ficy:latest"
+          tags: "ghcr.io/contrabanda-fm/docker-ficy:${{ github.event.inputs.version }}"
           #labels: ${{ steps.meta.outputs.labels }}
