@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install -y \
   procps \
   && rm -rf /var/lib/apt/lists/*
 
+#RUN DEBIAN_FRONTEND=noninteractive TZ=Europe/Madrid apt-get -y install tzdata
+
 RUN cd && \
   git clone https://gitlab.com/wavexx/fIcy && \
   ls -la && \

@@ -11,6 +11,7 @@ services:
       - BACKUP_FILE_DURATION=${BACKUP_FILE_DURATION:-3600}
       - BACKUP_FILE_NAME=${BACKUP_FILE_NAME:-backup}
       - STREAMING_URL=${STREAMING_URL:-http://contrabanda.org:8000/contrabanda}
+      - TZ=${TZ:-Europe/Madrid}
     image: localhost/ficy
     volumes:
       - volume-ficy:/opt/ficy

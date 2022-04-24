@@ -4,6 +4,8 @@
 
 - [docker-ficy](#docker-ficy)
 - [Usage](#usage)
+- [Docker compose](#docker-compose)
+- [Credits](#credits)
 
 <!-- END doctoc.sh generated TOC please keep comment here to allow auto update -->
 # docker-ficy
@@ -11,6 +13,26 @@
 Dockerized ficy, "An icecast/shoutcast stream grabber suite"
 
 # Usage
+
+Run below command adjusting below variables:
+
+* STREAMING_URL. Specify an HTTP URL of a icecast/shoutcast mountpoint
+* BACKUP_FILE_NAME. The filename that it will be written to docker volume
+* BACKUP_FILE_DURATION. Expressed in seconds, the duration of the .mp3 file generated
+* TZ. Timezone
+
+```
+sudo docker run \
+  --name ficy \
+  -e BACKUP_FILE_DURATION=10 \
+  -e BACKUP_FILE_NAME=my_facy_backup \
+  -e STREAMING_URL=http://contrabanda.org:8000/contrabanda \
+  -e TZ=Europe/Madrid \
+  -v backup:/opt/ficy \
+  -d ghcr.io/contrabanda-fm/docker-ficy:latest
+```
+
+# Docker compose
 
 1. Configure variables
 
@@ -31,6 +53,7 @@ And adjust below variables:
 * STREAMING_URL. Specify an HTTP URL of a icecast/shoutcast mountpoint
 * BACKUP_FILE_NAME. The filename that it will be written to docker volume
 * BACKUP_FILE_DURATION. Expressed in seconds, the duration of the .mp3 file generated
+* TZ. Timezone
 
 2. Bring up the docker contaner:
 
@@ -103,3 +126,7 @@ Removing ficy ... done
 Removing network docker-ficy_default
 Removing volume volume-ficy
 ```
+
+# Credits
+
+Wonderful project, [fIcy](https://gitlab.com/wavexx/fIcy)
