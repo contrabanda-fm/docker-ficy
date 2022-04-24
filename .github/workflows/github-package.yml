@@ -52,9 +52,7 @@ jobs:
       # DEBUG
       - name: DEBUG
         run: |
-          echo "tags: ${{ steps.meta.outputs.tags }}"
-          echo "labels: ${{ steps.meta.outputs.labels }}" 
-          echo "args: ${{ steps.meta.outputs.args }}" 
+          echo "args: ${{ steps.meta.outputs.args.env.REGISTRY }}" 
 
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
