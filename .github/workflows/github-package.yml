@@ -7,12 +7,12 @@ on:
   push:
     branches:
       - main
-
-inputs:
-  tag:
-    description: 'Docker image tag'
-    required: false
-    default: 'latest'
+  workflow_dispatch:
+    inputs:
+      tag:
+        default: 'latest'
+        description: 'Docker image tag'
+        required: false
 
 jobs:
   build-and-push:
