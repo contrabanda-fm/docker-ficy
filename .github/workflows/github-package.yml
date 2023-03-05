@@ -2,13 +2,13 @@ name: Create and publish a Docker image
 
 env:
   REGISTRY: ghcr.io
-  DOCKERIMAGETAG: ${{ inputs.dockerimagetag }}
+  DOCKERIMAGETAG: latest
 
 on:
   push:
     branches:
       - main
-  workflow_call:
+  workflow_dispatch:
     inputs:
       dockerimagetag:
         default: "latest"
@@ -17,11 +17,15 @@ on:
         type: string
 
 jobs:
-  build-and-push:
+  print-input:
+    if: ${{ inputs.dockerimagetag }}
     runs-on: ubuntu-latest
     steps:
       - name: Print input value to stdout
-        #run: echo "Input value: _"${{ github.event.inputs.dockerimagetag }}"_ lol"
-        #run: echo "Input value _"${{ env.REGISTRY }}"_"
-        #run: echo Input value _${{ inputs.dockerimagetag }}_
-        run: echo "Input value _"${{ env.DOCKERIMAGETAG }}"_"
+        run: echo Input value _${{ inputs.dockerimagetag }}_
+  print-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print env value to stdout
+        run: echo Input value _${{ env.DOCKERIMAGETAG }}_
+
