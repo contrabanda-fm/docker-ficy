@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print input value to stdout
-        run: echo "Input value: _${{ github.event.inputs.dockerimagetag }}_ lol"
+        run: echo "Input value: ${{ github.event.inputs.dockerimagetag }} lol"
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Log in to the Container registry
