@@ -1,62 +1,39 @@
 name: Create and publish a Docker image
 
-on:
-  push:
-    branches: ['**']
-  workflow_dispatch:
-    inputs:
-      dockerimagetag:
-        default: "latest"
-        description: "Docker image tag, defaults to 'latest'"
-        required: false
-        type: string
-
 env:
-  IMAGE_NAME: ${{ github.repository }}
   REGISTRY: ghcr.io
 
+on:
+  push:
+    branches:
+      - main
+
+inputs:
+  tag:
+    description: 'Docker image tag'
+    required: false
+    default: 'latest'
+
 jobs:
-  build-and-push-image:
-    env:
-      DOCKERIMAGETAG: ${{ github.event.inputs.dockerimagetag }}
+  build-and-push:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
       - name: Log in to the Container registry
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        uses: docker/login-action@v2
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-#      - name: Extract metadata (tags, labels) for Docker
-#        id: meta
-#        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
-#        with:
-#          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-
-      # https://github.com/actions/runner/issues/655#issuecomment-1015372602
-      # It did NOT work, discovvered ENV variables: REGISTRY, IMAGE_NAME
-#      - uses: cardinalby/export-env-action@v1
-#        with:
-#          envFile: '.env.example'
-#          # Error: Error: ENOENT: no such file or directory, open '../../.env.example'
-#          #envFile: '../../.env.example'
-#          expand: 'true'
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          # https://github.com/docker/build-push-action#inputs
           build-args: |
             IMAGE=debian
             VERSION=latest
           context: .
           push: true
-          #tags: "ghcr.io/contrabanda-fm/docker-ficy:${{ env.INPUT_VERSION}}"
           tags: |
-            "ghcr.io/contrabanda-fm/docker-ficy:${{ env.DOCKERIMAGETAG }}"
+            ghcr.io/my-username/my-image:${{ github.sha }}
+            ghcr.io/my-username/my-image:${{ github.event.inputs.tag }}
