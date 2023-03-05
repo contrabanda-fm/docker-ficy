@@ -49,17 +49,12 @@ jobs:
 #          expand: 'true'
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        uses: docker/build-push-action@v4
         with:
-          # https://stackoverflow.com/a/63927832
+          # https://github.com/docker/build-push-action#inputs
           build-args: |
             IMAGE=debian
             VERSION=latest
           context: .
           push: true
-          #tags: ${{ steps.meta.outputs.tags }}
-          # It fails if not triggered manually
-          #tags: "ghcr.io/contrabanda-fm/docker-ficy:${{ github.event.inputs.version }}"
-          # TODO: use variables instead of hardcoded values
-          tags: "ghcr.io/contrabanda-fm/docker-ficy:latest"
-          #labels: ${{ steps.meta.outputs.labels }}
+          tags: "ghcr.io/contrabanda-fm/docker-ficy:${{ env.INPUT_VERSION}}"
