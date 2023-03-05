@@ -6,7 +6,8 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        default: "latest"
+        #default: "latest"
+        default: ${{ github.sha }}
         description: 'Docker image version'
         required: false
         type: string
