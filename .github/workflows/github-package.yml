@@ -21,7 +21,7 @@ on:
         type: string
 
 jobs:
-  print-input:
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
