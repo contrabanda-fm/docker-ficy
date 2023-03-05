@@ -21,7 +21,8 @@ jobs:
     steps:
       - name: Print input value to stdout
         #run: echo "Input value: _"${{ github.event.inputs.dockerimagetag }}"_ lol"
-        run: echo "Input value _"${{ env.REGISTRY }}"_"
+        #run: echo "Input value _"${{ env.REGISTRY }}"_"
+        run: echo "Input value _"${{ inputs.dockerimagetag }}"_"
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Log in to the Container registry
