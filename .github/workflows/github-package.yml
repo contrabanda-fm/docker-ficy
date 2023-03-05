@@ -10,9 +10,9 @@ on:
   workflow_call:
     inputs:
       dockerimagetag:
-        default: 'latest'
-        description: 'Docker image tag'
-        required: false
+        default: "latest"
+        description: "Docker image tag"
+        required: true
         type: string
 
 jobs:
@@ -22,7 +22,7 @@ jobs:
       - name: Print input value to stdout
         #run: echo "Input value: _"${{ github.event.inputs.dockerimagetag }}"_ lol"
         #run: echo "Input value _"${{ env.REGISTRY }}"_"
-        run: echo "Input value _"${{ inputs.dockerimagetag }}"_"
+        run: echo Input value _${{ inputs.dockerimagetag }}_
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Log in to the Container registry
