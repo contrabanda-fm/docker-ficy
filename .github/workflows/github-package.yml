@@ -1,11 +1,9 @@
 name: Create and publish a Docker image
 
 env:
-  DOCKERIMAGE: docker-ficy
   # TODO: keep investigating how to use input and its default value
   DOCKERIMAGETAG: latest
   REGISTRY: ghcr.io
-  USER: contrabanda-fm
 
 on:
   push:
@@ -54,5 +52,3 @@ jobs:
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ github.repository }}:${{ inputs.dockerimagetag }}
-
-
