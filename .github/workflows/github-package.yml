@@ -59,4 +59,4 @@ jobs:
           push: true
           #tags: "ghcr.io/contrabanda-fm/docker-ficy:${{ env.INPUT_VERSION}}"
           tags: \
-            ghcr.io/contrabanda-fm/docker-ficy::${{ github.event.inputs.version }}
+            ghcr.io/contrabanda-fm/docker-ficy:${{ github.event.inputs.version }}
