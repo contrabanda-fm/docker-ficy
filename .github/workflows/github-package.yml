@@ -15,7 +15,7 @@ on:
     inputs:
       dockerimagetag:
         # TODO: keep investigating how to use input and its default value
-        default: "latest"
+        default: ${{ env.REGISTRY }}
         description: "Docker image tag"
         required: true
         type: string
@@ -41,7 +41,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.USER }}/${{ env.DOCKERIMAGE }}:${{ env.DOCKERIMAGETAG }}
+            #${{ env.REGISTRY }}/${{ env.USER }}/${{ env.DOCKERIMAGE }}:${{ env.DOCKERIMAGETAG }}
+            ${{ env.REGISTRY }}/${{ env.GITHUB_REPOSITORY }}:${{ env.DOCKERIMAGETAG }}
       # Below step only executed if action triggered manually
       - name: Build and push Docker image using input docker image tag
         if: ${{ inputs.dockerimagetag }}
@@ -53,5 +54,6 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.USER }}/${{ env.DOCKERIMAGE }}:${{ inputs.dockerimagetag }}
+            #${{ env.REGISTRY }}/${{ env.USER }}/${{ env.DOCKERIMAGE }}:${{ inputs.dockerimagetag }}
+            ${{ env.REGISTRY }}/${{ env.GITHUB_REPOSITORY }}:${{ inputs.dockerimagetag }}
 
