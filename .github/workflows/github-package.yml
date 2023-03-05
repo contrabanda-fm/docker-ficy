@@ -1,18 +1,18 @@
-name: Create and publish a Docker image
-
-env:
-  REGISTRY: ghcr.io
-
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
+    inputs:
+      env_name:
+        required: true
+        type: string
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
-  build-and-push:
+  test-global-for-input:
+    name: Test global for input
     runs-on: ubuntu-latest
     steps:
-      - name: Print input value to stdout
-        run: echo Input value _${{ inputs.input1 }}_
-        with:
-          input1: value1
+        - run: |
+            echo "Passed input: ${{ inputs.env_name }}
