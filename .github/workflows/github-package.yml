@@ -5,15 +5,16 @@ on:
     branches: ['**']
   workflow_dispatch:
     inputs:
-      version:
+      dockerimagetag:
         default: "latest"
-        description: 'Docker image version'
+        description: "Docker image tag, defaults to 'latest'"
         required: false
         type: string
 
 env:
-  REGISTRY: ghcr.io
+  DOCKERIMAGETAG: ${{ github.event.inputs.dockerimagetag }}
   IMAGE_NAME: ${{ github.repository }}
+  REGISTRY: ghcr.io
 
 jobs:
   build-and-push-image:
@@ -59,4 +60,4 @@ jobs:
           push: true
           #tags: "ghcr.io/contrabanda-fm/docker-ficy:${{ env.INPUT_VERSION}}"
           tags: |
-            ghcr.io/contrabanda-fm/docker-ficy:${{ github.event.inputs.version }}
+            ghcr.io/contrabanda-fm/docker-ficy:${{ env.DOCKERIMAGETAG }}
