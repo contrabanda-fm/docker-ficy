@@ -18,14 +18,10 @@ on:
 
 jobs:
   print-input:
-    if: ${{ inputs.dockerimagetag }}
     runs-on: ubuntu-latest
     steps:
       - name: Print input value to stdout
         run: echo Input value _${{ inputs.dockerimagetag }}_
-  print-env:
-    runs-on: ubuntu-latest
-    steps:
+        if: ${{ inputs.dockerimagetag }}
       - name: Print env value to stdout
         run: echo Input value _${{ env.DOCKERIMAGETAG }}_
-
