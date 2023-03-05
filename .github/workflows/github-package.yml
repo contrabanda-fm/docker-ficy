@@ -15,8 +15,8 @@ on:
     inputs:
       dockerimagetag:
         # TODO: keep investigating how to use input and its default value
-        default: ${{ env.REGISTRY }}
-        description: "Docker image tag"
+        default: latest
+        description: Docker image tag
         required: true
         type: string
 
