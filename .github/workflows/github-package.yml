@@ -6,8 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        #default: "latest"
-        default: ${{ github.sha }}
+        default: "latest"
         description: 'Docker image version'
         required: false
         type: string
@@ -59,4 +58,5 @@ jobs:
           context: .
           push: true
           #tags: "ghcr.io/contrabanda-fm/docker-ficy:${{ env.INPUT_VERSION}}"
-          tags: "ghcr.io/contrabanda-fm/docker-ficy:${{ github.event.inputs.version }}"
+          tags: \
+            ghcr.io/myusername/myimage:${{ github.event.inputs.version }}
