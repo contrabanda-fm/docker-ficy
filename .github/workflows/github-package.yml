@@ -35,5 +35,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/my-username/my-image:${{ github.sha }}
-            ghcr.io/my-username/my-image:${{ github.event.inputs.tag }}
+            ghcr.io/contrabanda-fm/docker-ficy:${{ github.sha }}
+            ghcr.io/contrabanda-fm/docker-ficy:${{ github.event.inputs.tag }}
