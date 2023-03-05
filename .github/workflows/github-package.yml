@@ -2,7 +2,7 @@ name: Create and publish a Docker image
 
 env:
   REGISTRY: ghcr.io
-  DOCKERIMAGETAG: {{ inputs.dockerimagetag }}
+  DOCKERIMAGETAG: ${{ inputs.dockerimagetag }}
 
 on:
   push:
