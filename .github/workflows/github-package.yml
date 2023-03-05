@@ -11,7 +11,6 @@ defaults:
 
 jobs:
   test-global-for-input:
-    name: Test global for input
     runs-on: ubuntu-latest
     steps:
        - run: echo "Passed input: ${{ inputs.env_name }}
