@@ -1,16 +1,27 @@
+name: Create and publish a Docker image
+
+env:
+  REGISTRY: ghcr.io
+  DOCKERIMAGETAG: {{ inputs.dockerimagetag }}
+
 on:
+  push:
+    branches:
+      - main
   workflow_call:
     inputs:
-      env_name:
+      dockerimagetag:
+        default: "latest"
+        description: "Docker image tag"
         required: true
         type: string
 
-defaults:
-  run:
-    shell: bash
-
 jobs:
-  test-global-for-input:
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
-       - run: echo "Passed input: ${{ inputs.env_name }}
+      - name: Print input value to stdout
+        #run: echo "Input value: _"${{ github.event.inputs.dockerimagetag }}"_ lol"
+        #run: echo "Input value _"${{ env.REGISTRY }}"_"
+        #run: echo Input value _${{ inputs.dockerimagetag }}_
+        run: echo "Input value _"${{ env.DOCKERIMAGETAG }}"_"
