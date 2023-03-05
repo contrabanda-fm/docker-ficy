@@ -9,7 +9,7 @@ on:
       - main
   workflow_dispatch:
     inputs:
-      tag:
+      dockerimagetag:
         default: 'latest'
         description: 'Docker image tag'
         required: false
@@ -19,6 +19,8 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
+      - name: Print input value to stdout
+        run: echo "Input value: _${{ github.event.inputs.dockerimagetag }}_ lol"
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Log in to the Container registry
@@ -36,5 +38,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/contrabanda-fm/docker-ficy:${{ github.sha }}
-            #ghcr.io/contrabanda-fm/docker-ficy:${{ github.event.inputs.tag }}
+            ghcr.io/contrabanda-fm/docker-ficy:${{ github.event.inputs.dockerimagetag }}
