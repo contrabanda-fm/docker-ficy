@@ -56,8 +56,11 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y%m%d%H%M%S')"
       - name: Build and push Docker image with unique tag
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
+          build-args: |
+            IMAGE=debian
+            VERSION=latest
           context: .
           push: true
           tags: |
